@@ -5,12 +5,14 @@ import "./App.css";
 
 import { Footer } from "./layouts/NavbarAndFooter/Footer.tsx";
 import { HomePage } from "./layouts/HomePage/HomePage.tsx";
+import { SearchBooksPage } from "./layouts/SearchBooksPage/SearchBooksPage.tsx";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <HomePage />
+      {/* <HomePage /> */}
+      <SearchBooksPage />
       <Footer />
     </div>
   );
