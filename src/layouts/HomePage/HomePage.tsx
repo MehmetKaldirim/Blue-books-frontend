@@ -1,8 +1,8 @@
 import React from "react";
-import { Carousel } from "./components/Carousel.tsx";
-import { ExploreTopBooks } from "./components/ExploreTopBooks.tsx";
-import { Heros } from "./components/Heros.tsx";
-import { LibraryServices } from "./components/LibraryServices.tsx";
+import { Carousel } from "./components/Carousel";
+import { ExploreTopBooks } from "./components/ExploreTopBooks";
+import { Heros } from "./components/Heros";
+import { LibraryServices } from "./components/LibraryServices";
 
 export const HomePage = () => {
   return (

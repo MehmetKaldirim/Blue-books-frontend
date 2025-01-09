@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import BookModel from "../../models/BookModel";
-import { SpinnerLoading } from "../Utils/SpinnerLoading.tsx";
-import { StarsReview } from "../Utils/StarsReview.tsx";
-import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox.tsx";
+import { SpinnerLoading } from "../Utils/SpinnerLoading";
+import { StarsReview } from "../Utils/StarsReview";
+import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox";
 
 export const BookCheckoutPage = () => {
   const [book, setBook] = useState<BookModel>();

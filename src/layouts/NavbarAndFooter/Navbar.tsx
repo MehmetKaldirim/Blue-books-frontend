@@ -19,15 +19,22 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <NavLink className="nav-link" to="/" activeClassName="active" end>
+              <NavLink
+                className={({ isActive }) =>
+                  "nav-link" + (isActive ? " active" : "")
+                }
+                to="/"
+                end // For exact matching of the root path
+              >
                 Home
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink
-                className="nav-link"
+                className={({ isActive }) =>
+                  "nav-link" + (isActive ? " active" : "")
+                }
                 to="/search"
-                activeClassName="active"
               >
                 Search Books
               </NavLink>

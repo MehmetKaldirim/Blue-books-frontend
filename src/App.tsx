@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { Navbar } from "./layouts/NavbarAndFooter/Navbar.tsx";
+import { Navbar } from "./layouts/NavbarAndFooter/Navbar";
 import "./App.css";
-import { Footer } from "./layouts/NavbarAndFooter/Footer.tsx";
-import { HomePage } from "./layouts/HomePage/HomePage.tsx";
-import { SearchBooksPage } from "./layouts/SearchBooksPage/SearchBooksPage.tsx";
-import { BookCheckoutPage } from "./layouts/BookCheckoutPage/BookCheckoutPage.tsx";
+import { Footer } from "./layouts/NavbarAndFooter/Footer";
+import { HomePage } from "./layouts/HomePage/HomePage";
+import { SearchBooksPage } from "./layouts/SearchBooksPage/SearchBooksPage";
+import { BookCheckoutPage } from "./layouts/BookCheckoutPage/BookCheckoutPage";
 
 function App() {
   return (
