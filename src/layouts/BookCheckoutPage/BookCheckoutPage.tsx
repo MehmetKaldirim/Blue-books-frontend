@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import BookModel from "../../models/BookModel";
-import { SpinnerLoading } from "../Utils/SpinnerLoading";
+import { SpinnerLoading } from "../Utils/SpinnerLoading.tsx";
+import { StarsReview } from "../Utils/StarsReview.tsx";
+import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox.tsx";
 
 export const BookCheckoutPage = () => {
   const [book, setBook] = useState<BookModel>();
@@ -11,7 +13,8 @@ export const BookCheckoutPage = () => {
 
   useEffect(() => {
     const fetchBook = async () => {
-      const baseUrl: string = `http://localhost:8080/api/books/${bookId}`;
+      //const baseUrl: string = `http://localhost:8080/api/books/${bookId}`;
+      const baseUrl: string = `http://localhost:8080/api/books/search/findBookByIdWithProjection?id=${bookId}`;
 
       const response = await fetch(baseUrl);
 
@@ -32,6 +35,8 @@ export const BookCheckoutPage = () => {
         img: responseJson.img,
       };
 
+      //console.log("bu da check author " + responseJson.author);
+
       setBook(loadedBook);
       setIsLoading(false);
     };
@@ -39,7 +44,7 @@ export const BookCheckoutPage = () => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, []);
+  }, [bookId]);
 
   if (isLoading) {
     return <SpinnerLoading />;
@@ -74,8 +79,10 @@ export const BookCheckoutPage = () => {
               <h2>{book?.title}</h2>
               <h5 className="text-primary">{book?.author}</h5>
               <p className="lead">{book?.description}</p>
+              <StarsReview rating={4.5} size={32} />
             </div>
           </div>
+          <CheckoutAndReviewBox book={book} mobile={false} />
         </div>
         <hr />
       </div>
@@ -97,8 +104,10 @@ export const BookCheckoutPage = () => {
             <h2>{book?.title}</h2>
             <h5 className="text-primary">{book?.author}</h5>
             <p className="lead">{book?.description}</p>
+            <StarsReview rating={4.5} size={32} />
           </div>
         </div>
+        <CheckoutAndReviewBox book={book} mobile={true} />
         <hr />
       </div>
     </div>
