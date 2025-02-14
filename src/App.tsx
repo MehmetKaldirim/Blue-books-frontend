@@ -9,10 +9,11 @@ import { SearchBooksPage } from "./layouts/SearchBooksPage/SearchBooksPage";
 import { BookCheckoutPage } from "./layouts/BookCheckoutPage/BookCheckoutPage";
 import { oktaConfig } from "./lib/oktaConfig";
 import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
-import { Security, LoginCallback, SecureRoute } from "@okta/okta-react";
+import { Security, LoginCallback } from "@okta/okta-react";
 import LoginWidget from "./Auth/LoginWidget.jsx";
 import { ReviewListPage } from "./layouts/BookCheckoutPage/ReviewListPage/RiviewListPage";
-
+import { ShelfPage } from "./layouts/BookCheckoutPage/ShelfPage/ShelfPage";
+import SecureRoute from "./layouts/Utils/SecureRoute";
 const oktaAuth = new OktaAuth(oktaConfig);
 
 function App() {
@@ -47,6 +48,10 @@ function App() {
               element={<LoginWidget config={oktaConfig} />}
             />
             <Route path="/login/callback" element={<LoginCallback />} />
+            {/* 🔥 SecureRoute için özel Route tanımla */}
+            <Route element={<SecureRoute />}>
+              <Route path="/shelf" element={<ShelfPage />} />
+            </Route>
           </Routes>
         </div>
         <Footer />
