@@ -28,6 +28,7 @@ export const Loans = () => {
           },
         };
         const shelfCurrentLoansResponse = await fetch(url, requestOptions);
+        console.log("bu döndü allah döndürmesin", shelfCurrentLoansResponse);
         if (!shelfCurrentLoansResponse.ok) {
           throw new Error("Something went wrong!");
         }
