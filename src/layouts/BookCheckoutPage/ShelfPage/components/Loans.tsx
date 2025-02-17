@@ -58,7 +58,7 @@ export const Loans = () => {
   }
 
   async function returnBook(bookId: number) {
-    const url = `http://localhost:8080/api/books/secure/return/?bookId=${bookId}`;
+    const url = `http://localhost:8080/api/books/secure/return?bookId=${bookId}`;
     const requestOptions = {
       method: "PUT",
       headers: {
@@ -67,6 +67,7 @@ export const Loans = () => {
       },
     };
     const returnResponse = await fetch(url, requestOptions);
+    console.log("here is return response", returnResponse);
     if (!returnResponse.ok) {
       throw new Error("Something went wrong!");
     }
@@ -74,7 +75,7 @@ export const Loans = () => {
   }
 
   async function renewLoan(bookId: number) {
-    const url = `http://localhost:8080/api/books/secure/renew/loan/?bookId=${bookId}`;
+    const url = `http://localhost:8080/api/books/secure/renew/loan?bookId=${bookId}`;
     const requestOptions = {
       method: "PUT",
       headers: {
