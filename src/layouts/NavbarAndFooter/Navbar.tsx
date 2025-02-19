@@ -62,6 +62,14 @@ export const Navbar = () => {
                     Q/A
                   </NavLink>
                 </li>
+                {authState.accessToken?.claims?.sub ===
+                  process.env.REACT_APP_ADMIN_USER && (
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/admin">
+                      ADMIN
+                    </NavLink>
+                  </li>
+                )}
               </>
             )}
           </ul>

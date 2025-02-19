@@ -16,7 +16,6 @@ export const oktaConfig = {
   scopes: ["openid", "profile", "email"],
   pkce: true,
   disableHttpsCheck: true,
-  disableCrossTab: true,
 };
 
 //const oktaAuth = new OktaAuth(oktaConfig);
