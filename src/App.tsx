@@ -13,6 +13,7 @@ import { Security, LoginCallback } from "@okta/okta-react";
 import LoginWidget from "./Auth/LoginWidget.jsx";
 import { ReviewListPage } from "./layouts/BookCheckoutPage/ReviewListPage/RiviewListPage";
 import { ShelfPage } from "./layouts/BookCheckoutPage/ShelfPage/ShelfPage";
+import { MessagesPage } from "./layouts/MessagesPage/MessagesPage";
 import SecureRoute from "./layouts/Utils/SecureRoute";
 const oktaAuth = new OktaAuth(oktaConfig);
 
@@ -51,6 +52,9 @@ function App() {
             {/* 🔥 SecureRoute için özel Route tanımla */}
             <Route element={<SecureRoute />}>
               <Route path="/shelf" element={<ShelfPage />} />
+            </Route>
+            <Route element={<SecureRoute />}>
+              <Route path="/messages" element={<MessagesPage />} />
             </Route>
           </Routes>
         </div>

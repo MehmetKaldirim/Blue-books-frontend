@@ -51,11 +51,18 @@ export const Navbar = () => {
               </NavLink>
             </li>
             {authState.isAuthenticated && (
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/shelf">
-                  Shelf
-                </NavLink>
-              </li>
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/shelf">
+                    Shelf
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/messages">
+                    Q/A
+                  </NavLink>
+                </li>
+              </>
             )}
           </ul>
           <ul className="navbar-nav ms-auto">
