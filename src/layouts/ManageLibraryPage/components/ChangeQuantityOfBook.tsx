@@ -44,7 +44,7 @@ export const ChangeQuantityOfBook: React.FC<ChangeQuantityOfBookProps> = ({
   }
 
   async function decreaseQuantity() {
-    const url = `http://localhost:8080/api/admin/secure/decrease/book/quantity/?bookId=${book?.id}`;
+    const url = `http://localhost:8080/api/admin/secure/decrease/book/quantity?bookId=${book?.id}`;
     const requestOptions = {
       method: "PUT",
       headers: {
@@ -62,7 +62,8 @@ export const ChangeQuantityOfBook: React.FC<ChangeQuantityOfBookProps> = ({
   }
 
   async function fetchDeleteBook() {
-    const url = `http://localhost:8080/api/admin/secure/delete/book/?bookId=${book?.id}`;
+    const url = `http://localhost:8080/api/admin/secure/delete/book?bookId=${book?.id}`;
+    console.log("bu book id  " + book?.id);
     const requestOptions = {
       method: "DELETE",
       headers: {
@@ -75,7 +76,8 @@ export const ChangeQuantityOfBook: React.FC<ChangeQuantityOfBookProps> = ({
     if (!updateResponse.ok) {
       throw new Error("Something went wrong!");
     }
-    fetchDeleteBook();
+
+    deleteBook(book.id);
   }
 
   return (
