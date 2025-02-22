@@ -17,6 +17,7 @@ import { MessagesPage } from "./layouts/MessagesPage/MessagesPage";
 import SecureRoute from "./layouts/Utils/SecureRoute";
 import AdminRoute from "./layouts/Utils/AdminRoute";
 import { ManageLibraryPage } from "./layouts/ManageLibraryPage/ManageLibraryPage";
+import { PaymentPage } from "./layouts/PaymentPage/PaymentPage";
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
@@ -61,6 +62,9 @@ function App() {
             </Route>
             <Route element={<AdminRoute />}>
               <Route path="/admin" element={<ManageLibraryPage />} />
+            </Route>
+            <Route element={<SecureRoute />}>
+              <Route path="/fees" element={<PaymentPage />} />
             </Route>
           </Routes>
         </div>

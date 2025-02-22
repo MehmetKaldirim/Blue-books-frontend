@@ -32,6 +32,9 @@ export const BookCheckoutPage = () => {
   const [isCheckedOut, setIsCheckedOut] = useState(false);
   const [isLoadingBookCheckedOut, setIsLoadingBookCheckedOut] = useState(true);
 
+  // Payment
+  const [displayError, setDisplayError] = useState(false);
+
   const bookId = window.location.pathname.split("/")[2];
 
   useEffect(() => {
@@ -68,7 +71,7 @@ export const BookCheckoutPage = () => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, [bookId, isCheckedOut]);
+  }, [bookId, isCheckedOut, displayError]);
 
   useEffect(() => {
     const fetchBookReviews = async () => {
@@ -163,7 +166,7 @@ export const BookCheckoutPage = () => {
         const currentLoansCountResponseJson =
           await currentLoansCountResponse.json();
         setCurrentLoansCount(currentLoansCountResponseJson);
-        console.log("bu sayi = " + currentLoansCount);
+        //console.log("bu sayi = " + currentLoansCount);
       }
       setIsLoadingCurrentLoansCount(false);
     };
@@ -203,7 +206,7 @@ export const BookCheckoutPage = () => {
 
   useEffect(() => {
     if (book) {
-      console.log("Book güncellendi, review işlemi yapılabilir.");
+      console.log("Book refreshed, you can review now");
     }
   }, [book]);
 
@@ -232,20 +235,29 @@ export const BookCheckoutPage = () => {
   }
 
   async function checkoutBook() {
-    const url = `${process.env.REACT_APP_API}/books/secure/checkout?bookId=${book?.id}`;
-    const requestOptions = {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
-        "Content-Type": "application/json",
-      },
-    };
-    const checkoutResponse = await fetch(url, requestOptions);
-    console.log("checkoutBook  response ", checkoutResponse);
-    if (!checkoutResponse.ok) {
-      throw new Error("Something went wrong!");
+    try {
+      const url = `${process.env.REACT_APP_API}/books/secure/checkout/?bookId=${book?.id}`;
+      const requestOptions = {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+          "Content-Type": "application/json",
+        },
+      };
+
+      const checkoutResponse = await fetch(url, requestOptions);
+
+      if (!checkoutResponse.ok) {
+        setDisplayError(true);
+        return; // Hata fırlatmadan çıkıyoruz
+      }
+
+      setDisplayError(false);
+      setIsCheckedOut(true);
+    } catch (error) {
+      console.error("Checkout error:", error);
+      setDisplayError(true);
     }
-    setIsCheckedOut(true);
   }
 
   async function submitReview(rating: number, reviewDescription: string) {
@@ -278,9 +290,15 @@ export const BookCheckoutPage = () => {
     setIsReviewLeft(true);
   }
 
+  console.log("set display Error" + displayError);
   return (
     <div>
       <div className="container d-none d-lg-block">
+        {displayError && (
+          <div className="alert alert-danger mt-3" role="alert">
+            Please pay outstanding fees and/or return late book(s).
+          </div>
+        )}
         <div className="row mt-5">
           <div className="col-sm-2 col-md-2">
             {book?.img ? (
@@ -317,6 +335,11 @@ export const BookCheckoutPage = () => {
         <LatestReviews reviews={reviews} bookId={book?.id} mobile={false} />
       </div>
       <div className="container d-lg-none mt-5">
+        {displayError && (
+          <div className="alert alert-danger mt-3" role="alert">
+            Please pay outstanding fees and/or return late book(s).
+          </div>
+        )}
         <div className="d-flex justify-content-center align-items-center">
           {book?.img ? (
             <img src={book?.img} width="226" height="349" alt="Book" />
