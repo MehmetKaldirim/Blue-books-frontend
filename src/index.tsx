@@ -10,6 +10,7 @@ const stripePromise = loadStripe(
   process.env.REACT_APP_PUB_KEY || "pk_test_default_value_here"
 );
 
+console.log("app calisti bu uri + " + process.env.REACT_APP_API);
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
