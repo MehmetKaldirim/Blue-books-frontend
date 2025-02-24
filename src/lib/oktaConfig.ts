@@ -1,4 +1,4 @@
-const oktaConfig = {
+export const oktaConfig = {
   clientId: process.env.REACT_APP_CLIENT_ID,
   issuer: process.env.REACT_APP_ISSUER,
   redirectUri:
